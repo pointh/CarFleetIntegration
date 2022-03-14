@@ -12,6 +12,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Threading;
+using System.Diagnostics;
 
 namespace CarFleetIntegration
 {
@@ -30,10 +32,24 @@ namespace CarFleetIntegration
             InitializeComponent();
 
             car1.SubscribeToService(center);
+            car1.ErrorJustHappened += (c) =>
+            {
+                if (c.Severity > 50)
+                {
+                    btnCar1.Background = Brushes.Red;
+                }
+            };
+
             car2.SubscribeToService(center);
 
             center.SubscribeToFixCarErrors(car1);
             center.SubscribeToFixCarErrors(car2);
+            center.ServiceActions += Center_ServiceActions;
+        }
+
+        private void Center_ServiceActions(CarRepareEventArgs e)
+        {
+            btnCenter.Content = e.ServiceAction;
         }
 
         private void btnCar1_Click(object sender, RoutedEventArgs e)
