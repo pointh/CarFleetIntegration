@@ -38,7 +38,7 @@ namespace CarFleetIntegration
             center.ServiceActions += ServicingOnAdvice;
         }
 
-        public void ServicingOnAdvice(CarRepareEventArgs e)
+        public void ServicingOnAdvice(CarRepairEventArgs e)
         {
             if (e.ForCar == Id)
                 Debug.WriteLine($"Car: Přijatá oprava pro auto id={e.ForCar} je {e.ServiceAction}");

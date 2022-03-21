@@ -7,13 +7,13 @@ using System.Threading.Tasks;
 
 namespace CarFleetIntegration
 {
-    public class CarRepareEventArgs: EventArgs
+    public class CarRepairEventArgs: EventArgs
     {
         public Guid ForCar { get; set; }
         public string ServiceAction { get; set; }
     }
 
-    public delegate void SendService(CarRepareEventArgs e);
+    public delegate void SendService(CarRepairEventArgs e);
 
     public class Center
     {
@@ -28,9 +28,9 @@ namespace CarFleetIntegration
         {
             Debug.WriteLine($"Center: Přijata chyba { err.Severity}");
             if (err.Severity < 100)
-                ServiceActions(new CarRepareEventArgs { ServiceAction = "Vyměň kolo", ForCar = err.FromCar });
+                ServiceActions(new CarRepairEventArgs { ServiceAction = "Vyměň kolo", ForCar = err.FromCar });
             else
-                ServiceActions(new CarRepareEventArgs { ServiceAction = "Odstav auto", ForCar = err.FromCar });
+                ServiceActions(new CarRepairEventArgs { ServiceAction = "Odstav auto", ForCar = err.FromCar });
         }
     }
 }

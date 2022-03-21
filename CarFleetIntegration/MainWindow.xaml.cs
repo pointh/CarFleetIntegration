@@ -47,7 +47,7 @@ namespace CarFleetIntegration
             center.ServiceActions += Center_ServiceActions;
         }
 
-        private void Center_ServiceActions(CarRepareEventArgs e)
+        private void Center_ServiceActions(CarRepairEventArgs e)
         {
             btnCenter.Content = e.ServiceAction;
         }
